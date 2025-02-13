@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Message by Shobhit Dev | codingstella</title>
+     <style>
+      * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100dvh;
+  perspective: 1000px;
+  font: 1em/1.4 "Poppins", sans-serif;
+  overflow: hidden;
+  color: hsl(180 68% 5%);
+  background-image: radial-gradient(
+      circle farthest-corner at 50% 50%,
+      hsl(187 20% 88%) 30%,
+      hsl(149 20% 94%) 100%
+  );
+}
+
+.book {
+  position: relative;
+  display: flex;
+  margin: auto;
+  width: 42cqmin; /* Increased width */
+  pointer-events: none;
+  transform-style: preserve-3d;
+  transition: translate 1s;
+  translate: calc(min(var(--c), 1) * 50%) 0%;
+  rotate: 1 0 0 30deg;
+}
+
+.page {
+  --thickness: 4;
+  flex: none;
+  display: flex;
+  width: 100%;
+  font-size: 2.2cqmin; /* Slightly increased font size */
+  pointer-events: all;
+  user-select: none;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  transition: transform 1s,
+      rotate 1s ease-in calc((min(var(--i), var(--c)) - max(var(--i), var(--c))) * 50ms);
+  translate: calc(var(--i) * -100%) 0px 0px;
+  transform: translateZ(calc((var(--c) - var(--i) - 0.5) * calc(var(--thickness) * 0.23cqmin)));
+  rotate: 0 1 0 calc(clamp(0, var(--c) - var(--i), 1) * -180deg);
+}
+
+.front,
+.back {
+  position: relative;
+  flex: none;
+  width: 100%;
+  backface-visibility: hidden;
+  overflow: hidden;
+  background-color: #fff;
+  translate: 0px;
+}
+
+.back {
+  translate: -100% 0;
+  rotate: 0 1 0 180deg;
+}
+
+.book {
+  counter-reset: page -1;
+}
+
+.book a {
+  color: inherit;
+}
+
+.page {
+  box-shadow: 0em 0.5em 1em -0.2em #00000020;
+}
+
+.front,
+.back {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  padding: 2em;
+  border: 1px solid #0002;
+}
+
+.front:has(img),
+.back:has(img) {
+  padding: 0;
+}
+
+.front img,
+.back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.front::after,
+.back::after {
+  position: absolute;
+  bottom: 1em;
+  counter-increment: page;
+  content: counter(page) ".";
+  font-size: 0.8em;
+}
+
+.cover::after {
+  content: "";
+}
+
+.front::after {
+  right: 1em;
+}
+
+.front {
+  background: linear-gradient(to left, #f7f7f7 80%, #eee 100%);
+  border-radius: 0.1em 0.5em 0.5em 0.1em;
+}
+
+.back::after {
+  left: 1em;
+}
+
+.back {
+  background-image: linear-gradient(to right, #f7f7f7 80%, #eee 100%);
+  border-radius: 0.5em 0.1em 0.1em 0.5em;
+}
+
+.cover {
+  background: radial-gradient(
+          circle farthest-corner at 80% 20%,
+          hsl(150 80% 20% / 0.3) 0%,
+          hsl(170 60% 10% / 0.1) 100%
+      ),
+      hsl(231, 32%, 29%) url("./cover.jpg") 50% / cover;
+  color: hsl(0, 100%, 30%); /* Dark red text color for cover page */
+}
+
+h1,
+h2,
+h3 {
+  margin-bottom: 1px;
+  color: hsl(0, 100%, 30%); /* Dark red heading color */
+}
+
+p {
+  margin-top: 1px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: hsl(0, 100%, 30%); /* Dark red text color for paragraphs */
+}
+
+.front,
+.back {
+  padding: 1.5em;
+  color: hsl(0, 100%, 30%); /* Dark red text color for front and back pages */
+}
+
+.book {
+  width: 40cqmin; /* Slightly increased width */
+}
+
+.page {
+  font-size: 2cqmin; /* Slightly increased font size */
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+.front,
+.back {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1.5em;
+}
+
+h2 {
+  margin-bottom: 5px;
+}
+
+p {
+  margin-top: 5px;
+  line-height: 1.4;
+}
+
+
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100dvh;
+  perspective: 1000px;
+  font: 1em/1.4 "Poppins", sans-serif;
+  overflow: hidden;
+  color: hsl(180 68% 5%);
+  background: linear-gradient(to right, #ff7eb9, #ff65a3, #ff165d);
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Emoji Animation */
+.emoji {
+  position: absolute;
+  font-size: 3rem;
+  opacity: 0;
+  animation: floatEmojis 6s ease-in-out infinite;
+}
+
+@keyframes floatEmojis {
+  0% {
+    transform: translateY(100px);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-100px) rotate(20deg);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(100px);
+    opacity: 1;
+  }
+}
+
+/* Add random timing for each emoji */
+.emoji:nth-child(1) {
+  animation-delay: 0s;
+  left: 10%;
+}
+.emoji:nth-child(2) {
+  animation-delay: 1s;
+  left: 20%;
+}
+.emoji:nth-child(3) {
+  animation-delay: 2s;
+  left: 30%;
+}
+.emoji:nth-child(4) {
+  animation-delay: 3s;
+  left: 40%;
+}
+.emoji:nth-child(5) {
+  animation-delay: 4s;
+  left: 50%;
+}
+.emoji:nth-child(6) {
+  animation-delay: 5s;
+  left: 60%;
+}
+.emoji:nth-child(7) {
+  animation-delay: 6s;
+  left: 70%;
+}
+.emoji:nth-child(8) {
+  animation-delay: 7s;
+  left: 80%;
+}
+.emoji:nth-child(9) {
+  animation-delay: 8s;
+  left: 90%;
+}
+
+
+     </style>
+  </head>
+  <body>
+    <div class="book">
+      <div class="page">
+        <div class="front cover">
+          <h1
+            style="
+              color: rgb(255, 255, 255);
+              text-shadow: 5px 2px 5px rgb(0, 0, 0);
+            "
+          >
+            A Message for You🤍
+          </h1>
+
+          <p
+            style="
+              color: rgb(255, 255, 255);
+              text-shadow: 5px 2px 5px rgb(0, 0, 0);
+            "
+          >
+            2025.<br />Mr. Mishra Special Edition
+          </p>
+        </div>
+        <div class="back">
+          <h2>A Special Beginning ❤️✨</h2>
+
+       <p>Some people come into our lives unexpectedly, yet leave a lasting impact. You are one of those rare souls who make every moment feel a little more special.
+
+        From the very first conversation, something about you stood out—your kindness, your charm, and the effortless way you make the world around you brighter.
+        
+        This isn’t just a collection of words; it’s a small way of showing how much you mean to me. A way to remind you that you are appreciated, admired, and truly special.
+        
+        So, here’s to us—our conversations, our connection, and the beautiful moments yet to come. 💖</p>
+
+          <p>
+            Please imagine me while reading this... <br />Since we connect in
+            Whatsapp on October 26th, 2023....
+          </p>
+        </div>
+      </div>
+      <!--2nd page-->
+      <div class="page">
+        <div class="front">
+          <h2>From Strangers to Something Special ❤️✨</h2>
+          <p>
+            It’s incredible to think how, just a year ago, I didn’t even know you. Meeting you during that experiment in the chemistry lab was a moment of fate that I’ll always be grateful for.
+
+            At first, I wasn’t sure how we’d connect, what we’d talk about, or what kind of person you’d be. But now, after spending time with you, I’ve realized something truly special—
+            
+            You’re absolutely amazing. 💖
+            
+            Your words, your kindness, and the way you make me smile have already made a place in my heart. I never expected to meet someone like you, but now, I can’t imagine not having you in my life.
+            
+            Maybe it was destiny, or maybe it was just luck—but whatever it was, I’m glad it brought me to you. 💕
+          </p>
+        </div>
+        <div class="back">
+          <img src="./1.jpg" alt="Img 1" />
+        </div>
+      </div>
+      <!--3rd page-->
+      <div class="page">
+        <div class="front">
+          <h2>The Magic of You ✨💖</h2>
+          <p>
+            There’s a charm about you, a beauty that words can hardly capture. It’s in the sparkle of your eyes, the warmth of your smile, and the effortless way you light up every moment. Every little thing about you feels so perfect, so mesmerizing, that I often wonder—
+
+            Were you crafted as a masterpiece?
+            
+            It’s as if the universe took its time, carefully shaping someone as wonderful as you, just to make the world a little brighter. And trust me, you do. Every single day. 💕
+            
+            Your presence feels like a soft melody, soothing yet unforgettable. The way you carry yourself, the kindness in your heart, and the purity in your soul make you even more special. It’s not just about how beautiful you look—it’s about how beautiful you truly are.
+            
+            Every time I see you, I’m reminded that some things in life are simply magical, and you, without a doubt, are one of them. ✨💖
+          </p>
+        </div>
+        <div class="back">
+          <h2>The Strength Within You 💫✨</h2>
+          <p>
+            Beyond your beauty, what truly stands out is your dedication, hard work, and determination. 💪✨ You take on challenges fearlessly, never backing down, and always pushing forward. 🚀 There’s nothing beyond your reach because you have the strength and mindset to achieve anything you set your heart on. 💖
+
+You don’t just follow a path—you carve your own. 🌟 Your confidence and persistence make it clear that no obstacle is too big for you. Whatever you decide to do, I have no doubt you’ll make it happen. 💯
+
+And through it all, I’m with you—every step, in every aspect of life. 🤝 No matter what dream you chase, whether it’s Taekwondo 🥋 or anything else, I will stand by you and make sure it all comes true. 🌈 You are capable of anything, and I will always be here to support you. ❤️
+          </p>
+        </div>
+      </div>
+      <!--4th page-->
+      <div class="page">
+        <div class="front">
+          <h2>The Best Part of My Day🤞💖</h2>
+          <p>
+            Talking to you all day and night, seeing you on video calls, calling you Chotuu, sweetheart, shortcake... and finding ways to irritate you just to see that beautiful smile—it’s how my days go, and honestly, this is everything I’ve ever wanted. 💖
+
+Every message from you, every call, every laugh, it’s like a little moment of happiness that makes everything better. Your presence, even through a screen, fills my day with joy and warmth. 🥰
+
+I never thought I’d look forward to these little moments so much, but with you, they mean everything. 💕
+          </p>
+        </div>
+        <div class="back">
+          <img src="./2.jpg" alt="Img 1" />
+        </div>
+      </div>
+      <!--5th page-->
+      <div class="page">
+        <div class="front">
+          <h1>A Wish from the Heart 💫💖</h1>
+          <p>
+            Every day around 4 PM, my heart starts racing a little—because I know I’ll see you. That one moment of my day where everything else fades, and it’s just you. And every time, I wish that when you see me, you’d run straight into my arms, hold me tight, and kiss me like you own those lips—like they belong to you and no one else. 💋❤️
+
+I want you to show me your rights, to claim me without hesitation. That when I walk toward you, you turn to your friends with that beautiful smile and say, "That’s my man." 💞
+
+Every second with you is something I look forward to, and every 4 PM feels like the best part of my day—because it’s the time I get to see you. And when the moment finally comes where I can hold you close, I just want it to be something we never forget. ✨🔥
+
+          </p>
+        </div>
+        <div class="back">
+          <h1>Always Here for You 💖✨</h1>
+          <p>
+            You are everything to me, and I want you to know that no matter what, I’ll always be here for you. If you ever need anything—someone to listen, someone to annoy you just to make you smile, or someone to remind you how incredible you are—I’m just a message away.
+
+My time, my presence, my heart—they’re all yours whenever you need them. ❤️
+
+Life can be unpredictable, but one thing that will never change is that you’re not alone. Whether it’s a good day or a tough one, whether we’re talking all day and night or just stealing little moments at 4 PM, I’ll always be here—supporting you, standing by you, and making sure you never forget how special you are.
+
+You deserve nothing but happiness, and if I can be even the smallest reason for your smile, I’d consider myself lucky. No matter where life takes us, just know that you’ll always have me—someone who’s yours in every way. 💖🔥
+          </p>
+        </div>
+      </div>
+      <!--6th page-->
+      <div class="page">
+        <div class="front">
+          <h2>The Beauty of You ✨💖</h2>
+          <p>
+            Can we take a moment to appreciate how effortlessly stunning you look every single day? 😍 Whether it’s what you wear or just the way you carry yourself, it’s you—your confidence, your attitude, your presence—that makes you impossible to look away from.
+
+Every time I see you at 4 PM, it’s like the world slows down for a second. You have this way of drawing me in without even trying. Maybe it’s your smile, maybe it’s the way you talk, or maybe it’s just the way you are—but whatever it is, it’s completely irresistible. 💖
+
+And it’s not just about how breathtaking you look. It’s the way you make me feel, the way you handle everything with grace, the way you brighten up my day even when you’re just being your usual, effortlessly amazing self.
+
+You don’t just leave an impression—you leave a mark. On me, on everyone around you. And every single day, I’m just grateful I get to witness it all. ✨🔥
+          </p>
+        </div>
+        <div class="back">
+          <h2>Absolutely Breathtaking ✨💖</h2>
+          <p>
+            Every time I see you, no matter what you're wearing, you take my breath away. It’s not just about how gorgeous you look—it’s the way you carry yourself with confidence, grace, and that irresistible charm that makes it impossible to look away.
+
+I’m completely lost in you. 💖
+
+Your presence alone changes everything. The way you move, the way you smile, the way your energy just fills the space around you—it’s magnetic. No matter where you are, you stand out, not just because of your beauty, but because of you.
+
+You don’t just turn heads; you leave a mark. You make hearts race, you make moments unforgettable, and you make life feel a little more special just by being in it.
+
+You are not just beautiful—you are everything. 💫🔥
+          </p>
+        </div>
+      </div>
+      <!--7th page-->
+      <div class="page">
+        <div class="front">
+          <h2>Grateful for You🌹❤</h2>
+          <p>
+            I just wanted to take a moment to remind you how much you mean to me. From the very start, you’ve been someone I can’t help but admire—someone who has become such an important part of my days, more than words can ever express.
+
+Seeing you every day at 4 PM, talking to you all day and night, calling you Chotuu, sweetheart, shortcake… teasing you just to make you smile—it’s all become a part of me, something I never want to lose.
+
+Your presence, your laughter, the way you make even the simplest moments feel special—everything about you makes my life better. I’m grateful that our paths crossed, and no matter where life takes us, I’ll always be thankful for you.
+
+Some people leave a mark on your heart without even trying—and you, my love, have left yours on mine forever. 💖🔥
+          </p>
+        </div>
+        <div class="back">
+          <h2>Will You Be Mine? ❤️✨</h2>
+          <p>From the moment we started talking, you’ve been on my mind every single day. Seeing you at 4 PM, talking to you all day and night, calling you Chotuu, sweetheart, shortcake… teasing you just to see that adorable smile—this has become my favorite part of life.
+
+            You make my world brighter, my days better, and my heart completely yours. ❤️
+            
+            I don’t know what the future holds, but I know one thing for sure—I want you by my side. I want to be the one who makes you smile, who stands with you in every moment, who reminds you every day how special you are.
+            
+            So, here’s my question, straight from the heart…
+            
+            Will you be mine? 💖🔥 </p>
+        </div>
+      </div>
+
+      <div class="page">
+        <div class="front">
+          <img src="./4.png" alt="Img 1" />
+        </div>
+        <div class="back cover">
+          <h3>Cutest Queen</h3>
+          <p>
+            Content:By Mr. Mishra<br /><a
+              href=""
+              target="_blank"
+              rel="nofollow"></a>
+
+            <br />
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="emoji">❤️‍🔥</div>
+<div class="emoji">🫶🏻</div>
+<div class="emoji">❤️</div>
+<div class="emoji">😘</div>
+<div class="emoji">👨‍❤️‍💋‍👨</div>
+<div class="emoji">💓</div>
+<div class="emoji">❣️</div>
+<div class="emoji">💘</div>
+<div class="emoji">💖</div>
+<div class="emoji">💙</div>
+<div class="emoji">💚</div>
+<div class="emoji">🥰</div>
+<div class="emoji">💗</div>
+
+<script>
+  const flipBook = (elBook) => {
+    elBook.style.setProperty("--c", 0); // Set current page
+    elBook.querySelectorAll(".page").forEach((page, idx) => {
+      page.style.setProperty("--i", idx);
+      page.addEventListener("click", (evt) => {
+        if (evt.target.closest("a")) return;
+        const curr = evt.target.closest(".back") ? idx : idx + 1;
+        elBook.style.setProperty("--c", curr);
+      });
+    });
+  };
+  
+  document.querySelectorAll(".book").forEach(flipBook);
+  
+</script>
+ 
+  </body>
+</html>
+
